@@ -1,0 +1,172 @@
+body {
+    font-family: 'Montserrat',sans-serif;
+    font-weight: normal;
+    background-color: #F0FDFD;
+
+}
+
+
+#para {
+    top: 530px;
+    left: 60px;
+    font-size: 13px;
+    position: absolute;
+    font-weight: normal;
+    font-family: 'Montserrat',sans-serif;
+}
+
+.social-media {
+    text-align: center;
+    position: absolute;
+    top: 595px;
+    left: 70px;
+}
+
+.social-media p {
+    margin-top: 10px;
+    font-size: 9px;
+    width: 100%;
+    font-weight: normal;
+    font-family: 'Montserrat', sans-serif !important;
+
+}
+
+.social-icon {
+    color: black;
+    margin: 10px 15px 10px;
+    font-size: 12px;
+}
+
+
+
+#songList {
+    background-color: #F0FDFD;
+}
+
+#heading1 {
+
+    position: relative;
+    top: 30px;
+    left: 30px;
+    font-weight: bold;
+    font-size: 29px;
+    color: rgba(78, 75, 75, 1);
+}
+
+#heading2 {
+    top: 450px ;
+    position: relative;
+    left: 30px;
+    top: 74px;
+    font-size: 22px;
+    color: rgba(78, 75, 75, 1);
+}
+
+#songList {
+    position: absolute;
+    top: 179px;
+    left: 10px;
+
+}
+
+li {
+    margin: 5px;
+    padding: 5px;
+}
+
+#playsign {
+
+
+    top: 451px;
+    left: 152px;
+    position: absolute;
+    color: #5E5252;
+    opacity: 0.5;
+}
+
+#rightsign {
+    opacity: 0.5;
+    position: absolute;
+    top: 460px;
+    left: 228px;
+
+}
+
+
+/* Modify the appearance of the slider */
+.seek_slider {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    height: 5px;
+    background: black;
+    position: absolute;
+    top: 400px;
+    width: 280px;
+    left: 38px;
+    opacity: 0.3;
+}
+
+.current-time {
+    position: absolute;
+    top: 420px;
+    left: 38px;
+    font-size: 0.7rem;
+}
+
+.total-duration {
+    position: absolute;
+    top: 420px;
+    font-size: 0.7rem;
+    left: 289px;
+}
+
+#leftsign {
+    position: absolute;
+    top: 460px;
+    left: 97.2px;opacity: 0.5;
+}
+
+#firstHeart {
+    position: absolute;
+    top: 203px;
+    left: 275px;
+    color: pink;
+}
+
+#secondHeart {
+    position: absolute;
+    top: 238px;
+    left: 275px;
+    color: pink;
+}
+
+#thirdHeart {
+    position: absolute;
+    top: 273px;
+    left: 275px;
+    color: pink;
+}
+
+#fourthHeart {
+    position: absolute;
+    top: 308px;
+    left: 275px;
+    color: pink;
+}
+
+#fifthHeart {
+    position: absolute;
+    top: 344px;
+    left: 275px;
+    color: pink;
+}
+
+
+#shufflesign {
+    position: absolute;
+    top: 560px;
+    left: 39px;
+    height: 0px;
+    width: 0px;
+}

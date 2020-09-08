@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="container">
+        <div id="heading1">
+            <span> Music is Life. Enjoy!</span>
+        </div>
+        <div id="heading2"><span>Popular Tracks </span></div>
+        <i id="firstHeart" class="far fa-heart" onclick="heart()"></i>
+        <i id="secondHeart" class="far fa-heart"></i>
+        <i id="thirdHeart" class="far fa-heart"></i>
+        <i id="fourthHeart" class="far fa-heart"></i>
+        <i id="fifthHeart" class="far fa-heart"></i>
+
+        <div id="songList">
+
+
+        </div>
+        <div class="slider_container">
+            <div id="currentTime" class="current-time">00:00</div>
+            <input id="slider" type="range" min="1" max="100" value="0" step="1" class="seek_slider">
+            <div id="totalDuration" class="total-duration">00:00</div>
+        </div>
+        <div id="compPlayer">
+            <div class="playpause-track" onclick="playPause()">
+
+                <i id="playsign" class="far fa-play-circle fa-3x"></i>
+            </div>
+
+            <i id="leftsign" onclick="prevSong()" class="fas fa-step-backward fa-2x"></i>
+            <i id="rightsign" onclick="nextSong()" class="fas fa-step-forward fa-2x"></i>
+
+        </div>
+        <p id="para"></p>
+        <section class="social-media">
+            <div class="container-fluid">
+                <a href="https://www.facebook.com/ajay.jangir.942145/"> <i
+                        class="social-icon fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/Ajayjan28548037"> <i class="social-icon fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/ajayjangir0044/"> <i class="social-icon fab fa-instagram"></i></a>
+                <a href="mailto:ajayjangir0044@gmail.com"><i class="social-icon fas fa-envelope"></i></a>
+                <p>© Copyright 2020 Ajay Jangir. All rights reserved</p>
+            </div>
+        </section>
+    </div>
+
+
+
+    <script type="text/javascript">
+        const songs = [
+            "Tere Naal.mp3",
+            "Humnava Mere.mp3",
+            "Gazab Ka Hai Din.mp3",
+            "Tu Itni Khoobsurat.mp3",
+            "Tu Banja Gali ba(...mp3"
+
+
+
+
+
+        ]
+        //         let heartt = document.querySelector("#firstHeart");
+        //        firstHeart.onclick =(e)=>{
+        //             alert("sf");
+        //   heartt.innerHTML='<i id="firstHeart" class="fas fa-heart"></i>';
+        //            // document.getElementById("firstHeart").style.innerHTML='<i id="firstHeart" class="fas fa-heart"></i>';
+        //             document.getElementById("firstHeart").style.backgroundColor="yellow";
+
+        //         }
+        let seek_slider = document.querySelector(".seek_slider");
+        const createSongList = () => {
+            const mainList = document.createElement('ol');
+
+            for (let i = 0; i < songs.length; i++) {
+                const liItem = document.createElement('li');
+                liItem.appendChild(document.createTextNode(songs[i]));
+
+                mainList.appendChild(liItem);
+            }
+            return mainList;
+
+
+        }
+        var temp;
+        let audioEle = document.createElement('audio');
+        let isPlaying = false;
+        let playpause_btn = document.querySelector(".playpause-track");
+        document.getElementById("songList").appendChild(createSongList());
+        songList.onclick = (e) => {
+            isPlaying = true;
+            temp = e.target.innerText;
+            audioEle.src = e.target.innerText;
+
+            para.innerText = "Playing Now: " + e.target.innerText;
+            playpause_btn.innerHTML = '<i id="playsign" class="fa fa-pause-circle fa-3x"></i>';
+            audioEle.load();
+            audioEle.play();
+
+            setInterval(update, 1000);
+            audioEle.addEventListener("ended", nextSong);
+
+        }
+
+
+
+        let t = document.getElementById("currentTime");
+        let y = document.getElementById("totalDuration");
+
+        function update() {
+
+
+
+
+
+            let x = audioEle.currentTime * (100 / audioEle.duration);
+
+
+
+            slider.value = x;
+            let seekPosition = 0;
+
+            // Check if the current track duration is a legible number 
+
+
+            // Calculate the time left and the total duration 
+            let currentMinutes = Math.floor(audioEle.currentTime / 60);
+            let currentSeconds = Math.floor(audioEle.currentTime - currentMinutes * 60);
+            let durationMinutes = Math.floor(audioEle.duration / 60);
+            let durationSeconds = Math.floor(audioEle.duration - durationMinutes * 60);
+
+
+            if (currentSeconds < 10) {
+                currentSeconds = "0" + currentSeconds;
+            }
+            if (durationSeconds < 10) {
+                durationSeconds = "0" + durationSeconds;
+            }
+            if (currentMinutes < 10) {
+                currentMinutes = "0" + currentMinutes;
+            }
+            if (durationMinutes < 10) {
+                durationMinutes = "0" + durationMinutes;
+            }
+
+            // Display the updated duration 
+            t.textContent = currentMinutes + ":" + currentSeconds;
+            y.textContent = durationMinutes + ":" + durationSeconds;
+        }
+
+        function playPause() {
+            if (!isPlaying) {
+                isPlaying = true;
+                audioEle.play();
+
+                playpause_btn.innerHTML = '<i id="playsign" class="fa fa-pause-circle fa-3x"></i>';
+
+            } else {
+
+                playpause_btn.innerHTML = '<i id="playsign" class="fa fa-play-circle fa-3x"></i>';
+
+                audioEle.pause();
+                isPlaying = false;
+
+            }
+        }
+
+        function nextSong() {
+            console.log(!isPlaying);
+
+            playpause_btn.innerHTML = '<i id="playsign" class="fa fa-pause-circle fa-3x"></i>';
+
+            for (let i = 0; i < songs.length; i++) {
+
+                if (songs[i] == temp) {
+                    if (i < songs.length - 1) {
+                        audioEle.src = songs[i + 1];
+                        temp = songs[i + 1];
+
+                        para.innerText = "Playing Now: " + songs[i + 1];
+
+                        songIsPlaying();
+
+                        break;
+                    } else {
+                        audioEle.src = songs[0];
+                        temp = songs[0];
+                        para.innerText = "Playing Now: " + songs[0];
+                        songIsPlaying();
+                        break;
+                    }
+                }
+
+            }
+        }
+
+        function prevSong() {
+            for (let i = 0; i < songs.length; i++) {
+                if (songs[i] == temp) {
+                    if (i > 0) {
+                        audioEle.src = songs[i - 1];
+                        temp = songs[i - 1];
+                        songIsPlaying();
+                        para.innerText = "Playing Now: " + songs[i - 1];
+                        break;
+                    } else {
+                        audioEle.src = songs[songs.length - 1];
+                        temp = songs[songs.length - 1];
+                        para.innerText = "Playing Now: " + songs[songs.length-1];
+                        audioEle.load();
+                        audioEle.play();
+                        break;
+                    }
+                }
+            }
+
+        }
+
+        function songIsPlaying() {
+            audioEle.load();
+            audioEle.play();
+            tar = audioEle.currentTime;
+            audioEle.addEventListener("ended", nextSong);
+        }
+        const slider2 = document.getElementById("slider");
+        slider2.onchange = (e) => {
+            tar = e.target.value
+            seekto = audioEle.duration * (tar / 100);
+
+
+
+
+            audioEle.currentTime = seekto;
+
+        }
+
+        function seekTo(tar) {
+            seekto = audioEle.duration * (tar / 100);
+
+
+
+
+            audioEle.currentTime = seekto;
+        }
+    </script>
+</body>
+
+</html>
